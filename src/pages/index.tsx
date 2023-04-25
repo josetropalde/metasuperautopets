@@ -13,7 +13,7 @@ export default function Home() {
     <>
     <Header />
 
-    <section className="mt-32 px-[5%]">
+    <section className="mt-48 px-[5%]">
       <h1 className="text-white text-center text-3xl mb-16 lg:text-5xl">All Super Auto Pets Builds</h1>
       
       {data.map((item, index) => {
