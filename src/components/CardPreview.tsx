@@ -29,7 +29,7 @@ export default function CardPreview(props: CardPreviewProps) {
   }
   return (
     <>
-        <div className="bg-white dark:bg-gray-900 flex items-center lg:max-w-[60%] m-auto p-8 justify-between shadow">
+        <div className="bg-white dark:bg-gray-900 flex items-center lg:max-w-[60%] m-auto p-8 justify-between gap-4 shadow">
           <div style={{backgroundColor: `${tierColor}`}} className={`px-4 py-2 text-white font-bold text-xl rounded-md shadow`}>
             {tierString}
           </div>
