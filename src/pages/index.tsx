@@ -21,12 +21,10 @@ query MyQuery {
 }
 `;
 
+
 export async function getStaticProps() {
   const data = await request({
-    query: QUERY,
-    variables: '', 
-    includeDrafts: '', 
-    excludeInvalid: ''
+    query: QUERY
   });
   return {
     props: { data },
