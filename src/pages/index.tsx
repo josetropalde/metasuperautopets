@@ -23,9 +23,7 @@ query MyQuery {
 
 
 export async function getStaticProps() {
-  const data = await request({
-    query: QUERY
-  });
+  const data = await request({query: QUERY});
   return {
     props: { data },
   };
