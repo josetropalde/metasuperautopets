@@ -1,15 +1,58 @@
 import Card from "@/components/Card";
 import Footer from "@/sections/Footer";
+import { request } from "../../lib/datocms";
 import Header from "@/sections/Header";
 import Head from "next/head";
 
-export default function Home() {
-  const data = [
-    {tier: "A",},
-    {tier: "B",},
-    {tier: "C",},
-    {tier: "D",},
-  ]
+const QUERY = `
+query MyQuery {
+  allCompositions {
+    tier
+    earlyGame {
+      url
+    }
+    lateGame {
+      url
+    }
+    midGame {
+      url
+    }
+  }
+}
+`;
+
+export async function getStaticProps() {
+  const data = await request({
+    query: QUERY,
+    variables: '', 
+    includeDrafts: '', 
+    excludeInvalid: ''
+  });
+  return {
+    props: { data },
+  };
+}
+
+type HomeProps = {
+  data: {
+    allCompositions: [{
+      tier: string,
+      earlyGame: [{
+        url: string
+      }],
+      midGame: [{
+        url: string
+      }],
+      lateGame: [{
+        url: string
+      }],
+    }]
+  }
+}
+
+export default function Home(props: HomeProps) {
+  const { data } = props;
+
   return (
     <>
       <Head>
@@ -38,9 +81,15 @@ export default function Home() {
       <section className="mt-48 px-[5%]">
         <h1 className="text-white text-center text-3xl mb-16 lg:text-5xl">All Super Auto Pets Builds</h1>
         
-        {data.map((item, index) => {
+        {data.allCompositions.map((item, index) => {
           return (
-            <Card key={index} tier={item.tier}/>
+            <Card 
+              tier={item.tier}
+              earlyGame={item.earlyGame} 
+              midGame={item.midGame} 
+              lateGame={item.lateGame} 
+              key={index} 
+            />
           )
         })}
     

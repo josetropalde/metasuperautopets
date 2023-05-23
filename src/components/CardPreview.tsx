@@ -1,11 +1,16 @@
+import Image from "next/image";
+
 type CardPreviewProps = {
   setStatus: any,
   status: boolean,
-  tier: string
+  tier: string,
+  lateGame: [{
+    url: string
+  }],
 }
 
 export default function CardPreview(props: CardPreviewProps) {
-  const { setStatus, status, tier} = props
+  const { setStatus, status, tier, lateGame} = props
   let tierColor;
   let tierString;
   
@@ -33,12 +38,12 @@ export default function CardPreview(props: CardPreviewProps) {
           <div style={{backgroundColor: `${tierColor}`}} className={`px-4 py-2 text-white font-bold text-xl rounded-md shadow`}>
             {tierString}
           </div>
-          <div className="flex gap-2 flex-wrap justify-center">
-            <img src="https://via.placeholder.com/75x75" alt="" />
-            <img src="https://via.placeholder.com/75x75" alt="" />
-            <img src="https://via.placeholder.com/75x75" alt="" />
-            <img src="https://via.placeholder.com/75x75" alt="" />
-            <img src="https://via.placeholder.com/75x75" alt="" />
+          <div className="flex gap-4 flex-wrap justify-center">
+            {lateGame.map((item, index) => {
+              return (
+                <Image key={index} src={item.url} width="75" height="75" alt="Character"/>
+              )
+            })}
           </div>
           <div className="cursor-pointer" onClick={() => setStatus(!status)}>
             <img src="/arrow.png" className={`max-w-[25px] ${status ? 'rotate-180' : ''}`} />
