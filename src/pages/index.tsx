@@ -25,9 +25,6 @@ query MyQuery {
 export async function getStaticProps() {
   const data = await request({
     query: QUERY,
-    excludeInvalid: false,
-    includeDrafts: false,
-    variables: false
   });
   return {
     props: { data },
