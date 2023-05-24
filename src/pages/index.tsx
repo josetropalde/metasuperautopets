@@ -25,11 +25,15 @@ query MyQuery {
 export async function getStaticProps() {
   const data = await request({
     query: QUERY,
+    includeDrafts: true, 
+    excludeInvalid: false, 
+    variables: {}
   });
   return {
     props: { data },
   };
 }
+
 
 type HomeProps = {
   data: {
