@@ -6,7 +6,7 @@ import Head from "next/head";
 
 const QUERY = `
 query MyQuery {
-  allCompositions {
+  allCompositions(orderBy: tier_ASC) {
     tier
     earlyGame {
       url
